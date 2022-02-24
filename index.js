@@ -27,7 +27,17 @@ function numberWithCommas(x) {
 }
 
 function displayMatches() {
+    if (this.value === "") {
+        searchList.innerHTML = originValue;
+        return;
+    }
     const resultArrays = findMatches(this.value, cities);
+    if (resultArrays.length === 0) {
+        searchList.innerHTML = `
+        <li>Not found</li>
+        `;
+        return;
+    }
     const html = resultArrays
         .map((place) => {
             const regex = new RegExp(this.value, "gi");
@@ -52,6 +62,7 @@ function displayMatches() {
 
 const searchInput = document.getElementById("city");
 const searchList = document.querySelector(".suggestions");
+let originValue = searchList.innerHTML;
 
 searchInput.addEventListener("change", displayMatches);
 searchInput.addEventListener("keyup", displayMatches);
