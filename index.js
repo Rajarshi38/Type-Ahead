@@ -34,7 +34,7 @@ function displayMatches() {
     const resultArrays = findMatches(this.value, cities);
     if (resultArrays.length === 0) {
         searchList.innerHTML = `
-        <li>Not found</li>
+        <li>Not Found</li>
         `;
         return;
     }
